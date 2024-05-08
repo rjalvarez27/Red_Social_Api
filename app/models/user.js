@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         require: [true, 'El correo es necesario'],
         trim: true 
     },
-    role: {
+    rol: {
         type: String,
         required: true,
         default: 'user',
@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },   
-    image : {
+    avatar : {
         type: String
     } 
 },{
