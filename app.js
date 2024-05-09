@@ -8,7 +8,7 @@ dbConection();
 const port = process.env.PORT || 3000 ;
 app.use(cors());
 app.use(express.json());
-app.use('/socialnetwork/', require('./app/routes')); 
+app.use('/social/', require('./app/routes')); 
 
 app.listen(port, ()=>{
    console.log(`LOCALHOST:http://localhost:${port}`)

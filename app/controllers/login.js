@@ -1,8 +1,6 @@
 const userModel = require("../models/user");
 const jwt = require("jsonwebtoken");
 
-// npm i jsonwebtoken (instalar libreria para token)
-
 const login = async (req, res) => {
     try{
        const { email, password } = req.body;

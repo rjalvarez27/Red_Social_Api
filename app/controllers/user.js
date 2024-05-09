@@ -5,12 +5,12 @@ const userModel = require("../models/user");
 
 const createUser = async (req, res) => {
   try {
-    const { name, email,rol, password } = req.body;
+    const {name, username, email, password } = req.body;
     const user = await userModel.create({
       name,
+      username,
       email,
-      rol,
-      password: await userModel.encryptPassword(password)
+      password: await userModel.encryptPassword(password),
     });
     res.status(200).json({ message: "Usuario creado", user });
   } catch (error) {
@@ -25,6 +25,7 @@ const getUsers = async (req, res) => {
   const users = await userModel.find();  
   res.status(200).json(users);
 };  
+
 
 // obtener un solo usuario por id 
 

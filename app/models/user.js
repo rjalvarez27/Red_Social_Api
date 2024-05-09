@@ -34,7 +34,8 @@ const UserSchema = new mongoose.Schema({
         default: false
     },   
     avatar : {
-        type: String
+        type: String,
+        default: ""
     } 
 },{
     timestamps: true,
@@ -51,5 +52,7 @@ UserSchema.statics.encryptPassword = async (password) =>{
 UserSchema.statics.comparePassword = async (password, hashPassword) =>{
     return await bcrypt.compare(password, hashPassword)
 }
+
+
 
 module.exports = mongoose.model('User', UserSchema)
