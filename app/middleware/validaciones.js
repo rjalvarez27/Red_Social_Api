@@ -1,31 +1,34 @@
-const jwt = require("jsonwebtoken"); 
-const userModel = require("../models/user"); 
+const jwt = require("jsonwebtoken");
+const userModel = require("../models/user");
 
-const validationR = async (req, res, next) => {
-    try {
-    const { name , username, email, password  } = req.body;
-    console.log(name)
-    console.log(username)
-    console.log(email)
-    console.log(password)
-    if(!name){
-        return res.status(404).json({ message: "name " });
-    }
-    if(!username){
-        return res.status(404).json({ message: "username" });
-    }
-    if(!email){
-        return res.status(404).json({ message: "email" });
-    }
-    next()
+// validaciones del Register
+const validateR = (req, res, next) => {
+  const { name, username, email, password } = req.body;
+  const validName = new RegExp(/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/);
+  const validCorreo = new RegExp(
+    /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/
+  );
+  const validPassword = new RegExp(/^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$/);
+  
+  if (name == null || username == null || email == null || password == null) {
+    return res
+      .status(400)
+      .json({ message: "Verifique los datos, faltan datos" });
+  }
+  if (
+    name.length == 0 ||
+    username.length == 0 ||
+    email.length == 0 ||
+    password.length == 0
+  ) {
+    return res.status(400).json({ message: "Datos vacios" });
+  }
+  if (validName.test(name) == true && validName.test(username) == true && validCorreo.test(email) == true && validPassword.test(password) == true) {
+  console.log("Datos aceptados")
+  next();
+  } else {
+    return res.status(401).json({ message: "Datos introducidos no validas" });
+  }
+};
 
-    } catch(error){
-        return res.status(401)/json({message:"Usuario no encontrado"})
-    }
-
-
-}
-
-module.exports = {validationR}
-
-
+module.exports = { validateR };
