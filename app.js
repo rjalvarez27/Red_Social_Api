@@ -1,10 +1,24 @@
 require ('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const app = express();
 const {dbConnect} = require('./config/mongo.js'); 
-
+const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
+const app = express();
+const cors = require('cors');
 dbConnect();
+
+const upload = multer({ dest: '/app/uploads/' });
+
+app.post('/images', upload.array('photos', 4), (req, res) =>{
+   req.files.map(saveImage);
+   res.send('images uploaded');
+});
+
+function saveImage(file) {
+   const newPath = `./app/uploads/${file.originalname}`;
+   fs.renameSync(file.path, newPath);
+   return newPath;
+};
 
 const port = process.env.PORT || 3000;
 app.use(cors());
