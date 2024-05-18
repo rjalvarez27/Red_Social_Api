@@ -1,4 +1,3 @@
-const user = require("../models/user");
 const userModel = require("../models/user"); 
 
 //Crear un nuevo usuario
