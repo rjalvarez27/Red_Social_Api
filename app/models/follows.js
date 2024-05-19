@@ -23,3 +23,5 @@ const UserSchema = new mongoose.Schema({
     timestamps: true,
     versionKey: false
 })
+
+module.exports = mongoose.model('follows', UserSchema)

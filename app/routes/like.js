@@ -1,15 +1,16 @@
 const express = require('express');
-const router  = express.Router();
-
+const router = express.Router();
 const { createLikes, getlikes, getlikeUser, likeDelete } = require('../controllers/likes.js');
 
 //localhost:3000/api/like
 //Metodos:
 
-roter.post('/', createLikes)
+router.post('/', createLikes)
 
-roter.get('/', getlikes)
+router.get('/', getlikes)
 
-roter.get('/:id', getlikeUser)
+router.get('/:id', getlikeUser)
 
-roter.delete('/:id', likeDelete)
+router.delete('/:id', likeDelete)
+
+module.exports = router
