@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../middleware/uploadImage');
 const {createAvatar, getAvatar, avatarPatch, avatarDelete} = require('../controllers/avatar');
-const {uploadImage} = require('../middleware/uploadImage');
+
 
 //localhost:3000/api/avatar
 
