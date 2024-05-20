@@ -4,9 +4,9 @@ const modelAvatar = require("../models/avatar");
 
 const createAvatar = async (req, res) => {
     try {
-      const {id_usuario, avatar } = req.body;
+      const {id_user, avatar } = req.body;
       const perfil = await modelAvatar.create({
-         id_usuario,
+         id_user,
          avatar
       });
       res.status(200).json({ message: "Avatar creado", perfil });
@@ -19,8 +19,8 @@ const createAvatar = async (req, res) => {
   
   const getAvatar = async (req, res) => {
     try {
-      const id_usuario = req.params.id;  
-      const value = await modelAvatar.findById(id_usuario);
+      const id_user = req.params.id;  
+      const value = await modelAvatar.findById(id_user);
       if (!value) {
         return res.status(404).json({ message: "Avatar no encontrado" });  
       }  
@@ -34,9 +34,9 @@ const createAvatar = async (req, res) => {
   
   const avatarPatch = async (req, res) => {
     try {
-      const { id_usuario } = req.params;
+      const { id_user } = req.params;
       const {avatar} = req.body;
-      const value = await modelAvatar.findByIdAndUpdate(id_usuario, {
+      const value = await modelAvatar.findByIdAndUpdate(id_user, {
         avatar
       });
       if (!value) {
@@ -51,9 +51,8 @@ const createAvatar = async (req, res) => {
   // Ruta para borrar avatar por id de usuario
   const avatarDelete = async (req, res) => {
     try {
-      const {id_usuario} = req.body;
-      console.log(id_usuario)
-      const deleteAvatar = await userModel.findByIdAndDelete(id_usuario);
+      const {id_user} = req.body;
+      const deleteAvatar = await userModel.findByIdAndDelete(id_user);
       if (!deleteAvatar) {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }

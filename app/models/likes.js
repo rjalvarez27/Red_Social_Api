@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    id_publicacion:{
+const likeSchema = new mongoose.Schema({
+    id_publication:{
         type: String,
         require: [true, 'Id de publicacion es necesario'],
     }, 
-    id_usuario: {
+    id_user: {
         type:String,
     },
     like: {
         type: Boolean,
         default: true,
     },
-    notificaciones: {
+    notifications: {
         type: Boolean,
         default: true,     
     }
@@ -21,4 +21,4 @@ const UserSchema = new mongoose.Schema({
     versionKey: false
 })
 
-module.exports = mongoose.model('likes', UserSchema)
+module.exports = mongoose.model('like', likeSchema)

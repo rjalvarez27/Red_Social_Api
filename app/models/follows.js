@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    id_usuario:{
+const followSchema = new mongoose.Schema({
+    id_user:{
         type: String,
         require: [true, 'id de usuario es necesario'],
     },
-     id_seguidos: {
+     id_followed: {
         type: String,
         require: [true, 'id de seguidos es necesario'],
         default : 0
     },
-    id_seguidores: {
+    id_followers: {
         type: String,
         require: [true, 'id de seguidos es necesario'],
         default : 0
     },
-    notificaciones: {
+    notifications: {
         type: Boolean,
         default: false,
     }
@@ -24,4 +24,4 @@ const UserSchema = new mongoose.Schema({
     versionKey: false
 })
 
-module.exports = mongoose.model('follows', UserSchema)
+module.exports = mongoose.model('follow', followSchema)

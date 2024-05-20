@@ -5,7 +5,7 @@ const userModel = require("../models/user");
 const verifyAdmin = async (req, res, next) => { 
     try{
         // id: Administrador
-        const { id } = req.params;
+        const {id} = req.params;
         const user = await userModel.findById(id);
         console.log(user)
         if(!user){

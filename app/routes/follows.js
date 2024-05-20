@@ -6,7 +6,7 @@ const {createfollows, getfollows, followDeletSeguidos, followDeletSeguidores} = 
 //Metodos:
 router.post('/', createfollows)
 router.get('/:id', getfollows)
-router.delete('/:id_seguidos', followDeletSeguidos)
-router.delete('/:id_seguidores', followDeletSeguidores)
+router.delete('/:id_followed', followDeletSeguidos)
+router.delete('/:id_followers', followDeletSeguidores)
 
 module.exports = router

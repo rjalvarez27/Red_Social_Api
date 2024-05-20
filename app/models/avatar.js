@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const avatarSchema = new mongoose.Schema({
-   id_usuario:{
+   id_user:{
        type: String,
        require: [true, 'id de usuario es necesario'],
    },
