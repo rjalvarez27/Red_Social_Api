@@ -39,7 +39,6 @@ const validateLogin = (req, res, next) => {
       /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/
     );
     const validPassword = new RegExp(/^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$/);
-  
     if (email == null || password == null) {
       return res
         .status(400)
@@ -61,4 +60,4 @@ const validateLogin = (req, res, next) => {
 
 
 
-module.exports = { validateR , validateLogin};
+module.exports = {validateR , validateLogin};
