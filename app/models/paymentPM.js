@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const pagomovilSchema = new mongoose.Schema({
+const paymentModel = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -9,12 +9,16 @@ const pagomovilSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    references: {
+        type: String,
+        required: true
+    },
     image: {
-        type: String
-    } // USAR STRIPE/
+        type: Buffer
+    } // USAR STRIPE/ banco crystaldisk
 },{
     timestamps: true,
     versionKey: false
 })
 
-module.exports = mongoose.model('publicaciones', pagomovilSchema)
+module.exports = mongoose.model('pagos', paymentModel)

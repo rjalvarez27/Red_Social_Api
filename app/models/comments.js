@@ -11,7 +11,7 @@ const commentSchema = new mongoose.Schema({
         // max-lenght:
     },
     image: {
-        type: String
+        type: Array
     } /* PENSAR EN COMO SE VAN A IDENTIFICAR LOS COMENTARIOS */
 },{
     timestamps: true,

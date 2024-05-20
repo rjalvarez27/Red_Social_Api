@@ -7,7 +7,7 @@ const getPublish = async (req, res) => {
 }
 
 // AGREGAR COMENTARIO
-const newPublish = async (req, res) =>{
+/*const newPublish = async (req, res) =>{
     try{
         const {author, content, image} = req.body;
 
@@ -21,7 +21,7 @@ const newPublish = async (req, res) =>{
         res.status(500).json({message: error.message})
         
     }
-}
+}*/
 
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
@@ -40,7 +40,7 @@ const updatePublish = async (req, res) => {
     }catch(error){
         res.status(404).json({message: error.message});
     }
-}
+} //ADAPTAR A NUEVO SISTEMA
 
 // ELIMINAR COMENTARIO
 
@@ -59,4 +59,4 @@ const deletePublish = async (req, res) => {
     }
 }
 
-module.exports = { getPublish, newPublish, updatePublish, deletePublish }
+module.exports = { getPublish, updatePublish, deletePublish }

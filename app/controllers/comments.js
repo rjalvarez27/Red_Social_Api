@@ -7,7 +7,7 @@ const getComment = async (req, res) => {
 }
 
 // AGREGAR COMENTARIO
-const newComment = async (req, res) =>{
+/*const newComment = async (req, res) =>{
     try{
         const {author, content, image} = req.body;
 
@@ -21,7 +21,7 @@ const newComment = async (req, res) =>{
         res.status(500).json({message: error.message})
         
     }
-}
+}*/
 
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
@@ -40,7 +40,7 @@ const updateComment = async (req, res) => {
     }catch(error){
         res.status(404).json({message: error.message});
     }
-}
+} //ADAPTAR A NUEVO SISTEMA
 
 // ELIMINAR COMENTARIO
 
@@ -59,4 +59,4 @@ const deleteComment = async (req, res) => {
     }
 }
 
-module.exports = { getComment, newComment , updateComment , deleteComment}
+module.exports = { getComment , updateComment , deleteComment}
