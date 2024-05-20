@@ -9,8 +9,8 @@ router.post('/', createLikes)
 
 router.get('/', getlikes)
 
-router.get('/:id', getlikeUser)
+router.get('/:id_publicacion', getlikeUser)
 
-router.delete('/:id', likeDelete)
+router.delete('/:id_publicacion', likeDelete)
 
 module.exports = router
