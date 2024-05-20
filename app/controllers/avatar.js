@@ -1,11 +1,11 @@
-const modelAvatar = require("../models/avatar");
+const avatarModel = require("../models/avatar");
 
 // Crear Avatar
 
 const createAvatar = async (req, res) => {
     try {
       const {id_user, avatar } = req.body;
-      const perfil = await modelAvatar.create({
+      const perfil = await avatarModel.create({
          id_user,
          avatar
       });
@@ -20,7 +20,7 @@ const createAvatar = async (req, res) => {
   const getAvatar = async (req, res) => {
     try {
       const id_user = req.params.id;  
-      const value = await modelAvatar.findById(id_user);
+      const value = await   avatarModel.findById(id_user);
       if (!value) {
         return res.status(404).json({ message: "Avatar no encontrado" });  
       }  
@@ -36,7 +36,7 @@ const createAvatar = async (req, res) => {
     try {
       const { id_user } = req.params;
       const {avatar} = req.body;
-      const value = await modelAvatar.findByIdAndUpdate(id_user, {
+      const value = await avatarModel.findByIdAndUpdate(id_user, {
         avatar
       });
       if (!value) {
@@ -52,7 +52,7 @@ const createAvatar = async (req, res) => {
   const avatarDelete = async (req, res) => {
     try {
       const {id_user} = req.body;
-      const deleteAvatar = await userModel.findByIdAndDelete(id_user);
+      const deleteAvatar = await avatarModel.findByIdAndDelete(id_user);
       if (!deleteAvatar) {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }
