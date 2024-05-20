@@ -4,12 +4,12 @@ const modelfollows = require("../models/follows");
 
 const createfollows = async (req, res) => {
   try {
-    const {id_usuario, id_seguidos, id_seguidores, notificaciones } = req.body;
+    const {id_user, id_followed, id_followers, notifications } = req.body;
     const value = await modelfollows.create({
-       id_usuario,
-       id_seguidos,
-       id_seguidores,
-       notificaciones
+       id_user,
+       id_followed,
+       id_followers,
+       notifications
     });
     res.status(200).json({ message: "Like creado", value });
   } catch (error) {
@@ -22,8 +22,8 @@ const createfollows = async (req, res) => {
 
 const getfollows = async (req, res) => {
   try {
-    const id_usuario = req.params.id;  
-    const value = await modelfollows.findById(id_usuario);
+    const id_user = req.params.id;  
+    const value = await modelfollows.findById(id_user);
     if (!value) {
       return res.status(404).json({ message: "no encontrado" });  
     }  
@@ -36,9 +36,9 @@ const getfollows = async (req, res) => {
 // Ruta para borrar seguidos
 const followDeletSeguidos = async (req, res) => {
   try {
-    const {id_seguidos} = req.body;
-    console.log(id_seguidos)
-    const deleteF = await modelfollows.findByIdAndDelete(id_seguidos);
+    const {id_followed} = req.body;
+    console.log(id_followed)
+    const deleteF = await modelfollows.findByIdAndDelete(id_followed);
     if (!deleteF) {
       return res.status(404).json({ message: "no encontrado" });
     }
@@ -51,9 +51,9 @@ const followDeletSeguidos = async (req, res) => {
 // ruta para borrar seguidores
 const followDeletSeguidores = async (req, res) => {
   try {
-    const {id_seguidores} = req.body;
-    console.log(id_seguidores)
-    const deleteF = await modelfollows.findByIdAndDelete(id_seguidores);
+    const {id_followers} = req.body;
+    console.log(id_followers)
+    const deleteF = await modelfollows.findByIdAndDelete(id_followers);
     if (!deleteF) {
       return res.status(404).json({ message: "no encontrado" });
     }

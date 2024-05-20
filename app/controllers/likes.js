@@ -4,12 +4,12 @@ const modelLikes = require("../models/likes");
 
 const createLikes = async (req, res) => {
   try {
-    const {id_publicacion,id_usuario,like,notificaciones} = req.body;
+    const {id_publication, id_user, like, notidications} = req.body;
     const value = await modelLikes.create({
-       id_publicacion,
-       id_usuario,
+       id_publication,
+       id_user,
        like,
-       notificaciones
+       notidications
     });
     res.status(200).json({ message: "Like creado", value });
   } catch (error) {
@@ -28,8 +28,8 @@ const getlikes = async (req, res) => {
 
 const getlikeUser = async (req, res) => {
   try {
-    const id_publicacion = req.params.id;  
-    const like = await modelLikes.findById(id_publicacion);
+    const id_publication = req.params.id;  
+    const like = await modelLikes.findById(id_publication);
     if (!like) {
       return res.status(404).json({ message: "no encontrado" });  
     }  
@@ -43,9 +43,9 @@ const getlikeUser = async (req, res) => {
 // Ruta para borrar un like por publicacion
 const likeDelete = async (req, res) => {
   try {
-    const {id_publicacion} = req.body;
-    console.log(id_publicacion)
-    const deletelike = await modelLikes.findByIdAndDelete(id_publicacion);
+    const {id_publication} = req.body;
+    console.log(id_publication)
+    const deletelike = await modelLikes.findByIdAndDelete(id_publication);
     if (!deletelike) {
       return res.status(404).json({ message: "no encontrado" });
     }
