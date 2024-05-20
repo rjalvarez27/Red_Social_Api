@@ -33,11 +33,7 @@ const UserSchema = new mongoose.Schema({
     premium : {
         type: Boolean,
         default: false
-    },   
-    avatar : {
-        type: String,
-        default: ""
-    } 
+    }
 },{
     timestamps: true,
     versionKey: false
@@ -56,4 +52,4 @@ UserSchema.statics.comparePassword = async (password, hashPassword) =>{
 
 
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('user', UserSchema)
