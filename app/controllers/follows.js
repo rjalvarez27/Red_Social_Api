@@ -5,13 +5,13 @@ const modelfollows = require("../models/follows");
 const createfollows = async (req, res) => {
   try {
     const {id_usuario, id_seguidos, id_seguidores, notificaciones } = req.body;
-    const user = await modelLikes.create({
+    const value = await modelfollows.create({
        id_usuario,
        id_seguidos,
        id_seguidores,
        notificaciones
     });
-    res.status(200).json({ message: "Like creado", user });
+    res.status(200).json({ message: "Like creado", value });
   } catch (error) {
     res.status(404).json({ message: "Error al crear un like" });
   }
@@ -23,30 +23,44 @@ const createfollows = async (req, res) => {
 const getfollows = async (req, res) => {
   try {
     const id_usuario = req.params.id;  
-    const follow = await modelLikes.findById(id_usuario);
-    if (!like) {
+    const value = await modelfollows.findById(id_usuario);
+    if (!value) {
       return res.status(404).json({ message: "no encontrado" });  
     }  
-    res.json(user);
+    res.json(value);
   } catch (error) {
     res.status(500).json({ message: "Error al obtener Informacion" });  
   }  
 };  
 
-
-// Ruta para borrar  
-const followDelete = async (req, res) => {
+// Ruta para borrar seguidos
+const followDeletSeguidos = async (req, res) => {
   try {
-    const {id_usuario} = req.body;
-    console.log(id)
-    const deletelike = await modelLikes.findByIdAndDelete(id_publicacion);
-    if (!deletelike) {
+    const {id_seguidos} = req.body;
+    console.log(id_seguidos)
+    const deleteF = await modelfollows.findByIdAndDelete(id_seguidos);
+    if (!deleteF) {
       return res.status(404).json({ message: "no encontrado" });
     }
-    res.json({ message: "Eliminado", deletelike });
+    res.json({ message: "Eliminado", deleteF });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-module.exports = {createfollows,getfollows,followDelete}
+// ruta para borrar seguidores
+const followDeletSeguidores = async (req, res) => {
+  try {
+    const {id_seguidores} = req.body;
+    console.log(id_seguidores)
+    const deleteF = await modelfollows.findByIdAndDelete(id_seguidores);
+    if (!deleteF) {
+      return res.status(404).json({ message: "no encontrado" });
+    }
+    res.json({ message: "Eliminado", deleteF });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {createfollows,getfollows, followDeletSeguidos, followDeletSeguidores}

@@ -5,13 +5,13 @@ const modelLikes = require("../models/likes");
 const createLikes = async (req, res) => {
   try {
     const {id_publicacion,id_usuario,like,notificaciones} = req.body;
-    const user = await modelLikes.create({
+    const value = await modelLikes.create({
        id_publicacion,
        id_usuario,
        like,
        notificaciones
     });
-    res.status(200).json({ message: "Like creado", user });
+    res.status(200).json({ message: "Like creado", value });
   } catch (error) {
     res.status(404).json({ message: "Error al crear un like" });
   }
