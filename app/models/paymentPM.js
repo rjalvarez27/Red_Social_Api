@@ -13,8 +13,8 @@ const paymentModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
-        type: Buffer
+    comprobante: {
+        type: Array
     } // USAR STRIPE/ banco crystaldisk
 },{
     timestamps: true,

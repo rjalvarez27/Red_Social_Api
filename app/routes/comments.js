@@ -12,7 +12,6 @@ router.put('/:id', updateComment);
 router.delete('/:id', deleteComment);
 
 const storage = multer.memoryStorage()
-//const upload = multer({ dest: '/app/uploads/' });
 const upload = multer({ storage: storage });
 
 
