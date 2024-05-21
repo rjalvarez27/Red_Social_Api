@@ -3,7 +3,7 @@ const avatarModel = require('../models/avatar');
 const router = express.Router();
 const { getAvatar,  avatarDelete} = require('../controllers/avatar');
 const multer = require('multer');
-const storage = multer.memoryStorage()
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 //localhost:3000/api/avatar
@@ -11,7 +11,6 @@ const upload = multer({ storage: storage });
 router.get('/:id', getAvatar)
 router.delete('/:id', avatarDelete)
 router.post('/', upload.array('avatar', 1), async (req, res) => {
-
     try {
         images = req.files.map(file => ({
             name: file.originalname,
@@ -23,7 +22,7 @@ router.post('/', upload.array('avatar', 1), async (req, res) => {
             avatar: images    
           });
         await newPublish.save();
-        console.log(images)
+        console.log(newPublish)
         res.send('File enviado' + newPublish);
 
     } catch (error) {
