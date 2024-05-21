@@ -5,7 +5,7 @@ const avatarModel = require("../models/avatar");
   const getAvatar = async (req, res) => {
     try {
       const id_user = req.params.id;  
-      const value = await   avatarModel.findById(id_user);
+      const value = await   avatarModel.findOne({id_user});
       if (!value) {
         return res.status(404).json({ message: "Avatar no encontrado" });  
       }  
@@ -18,8 +18,8 @@ const avatarModel = require("../models/avatar");
   // Ruta para borrar avatar por id de usuario
   const avatarDelete = async (req, res) => {
     try {
-      const id_user = req.body;
-      const deleteAvatar = await avatarModel.findByIdAndDelete(id_user);
+      const id_user = req.params.id;
+      const deleteAvatar = await avatarModel.deleteOne({id_user});
       if (!deleteAvatar) {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }
