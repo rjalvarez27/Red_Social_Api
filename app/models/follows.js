@@ -17,7 +17,7 @@ const followSchema = new mongoose.Schema({
     },
     notifications: {
         type: Boolean,
-        default: false,
+        default: true,
     }
 },{  
     timestamps: true,
