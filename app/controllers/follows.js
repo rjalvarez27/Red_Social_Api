@@ -34,7 +34,7 @@ const getfollows = async (req, res) => {
 };  
 
 // Ruta para borrar seguidos
-const followDeletSeguidos = async (req, res) => {
+const followedDelet = async (req, res) => {
   try {
     const {id_followed} = req.body;
     console.log(id_followed)
@@ -49,7 +49,7 @@ const followDeletSeguidos = async (req, res) => {
 };
 
 // ruta para borrar seguidores
-const followDeletSeguidores = async (req, res) => {
+const followersDelet = async (req, res) => {
   try {
     const {id_followers} = req.body;
     console.log(id_followers)
@@ -63,4 +63,4 @@ const followDeletSeguidores = async (req, res) => {
   }
 };
 
-module.exports = {createfollows,getfollows, followDeletSeguidos, followDeletSeguidores}
+module.exports = {createfollows,getfollows, followedDelet, followersDelet}

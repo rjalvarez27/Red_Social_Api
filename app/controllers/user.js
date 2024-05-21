@@ -47,11 +47,14 @@ const getUser = async (req, res) => {
 const userPatch = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, password } = req.body;
+    const { name, username, email, rol, password, premium } = req.body;
     const user = await userModel.findByIdAndUpdate(id, {
       name,
+      username,
       email,
+      rol,
       password: await userModel.encryptPassword(password),
+      premium
     });
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -64,7 +67,7 @@ const userPatch = async (req, res) => {
 // Ruta para borrar un usuario por id
 const userDelete = async (req, res) => {
   try {
-    const {id} = req.body;
+    const {id} = req.params;
     console.log(id)
     const deleteUser = await userModel.findByIdAndDelete(id);
     if (!deleteUser) {

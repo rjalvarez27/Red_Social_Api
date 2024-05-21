@@ -3,7 +3,7 @@ const router = express.Router();
 const { getUsers, getUser, userPatch, userDelete, createUser }= require('../controllers/user.js');
 const { validateR  } = require('../middleware/validaciones');
 
-//localhost:3000/api/user
+//localhost:3000/social/user
 //Metodos:
 
 router.get('/', getUsers) 

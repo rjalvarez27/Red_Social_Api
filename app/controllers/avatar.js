@@ -1,21 +1,6 @@
 const avatarModel = require("../models/avatar");
-
-// Crear Avatar
-
-const createAvatar = async (req, res) => {
-    try {
-      const {id_user, avatar } = req.body;
-      const perfil = await avatarModel.create({
-         id_user,
-         avatar
-      });
-      res.status(200).json({ message: "Avatar creado", perfil });
-    } catch (error) {
-      res.status(404).json({ message: "Error al crear avatar" });
-    }
-  };
    
-  // obtener avatar por id de usuario 
+// obtener avatar por id de usuario 
   
   const getAvatar = async (req, res) => {
     try {
@@ -62,4 +47,4 @@ const createAvatar = async (req, res) => {
     }
   };
   
-module.exports = {createAvatar, getAvatar, avatarPatch, avatarDelete}
+module.exports = { getAvatar, avatarPatch, avatarDelete}
