@@ -19,11 +19,21 @@ const createUser = async (req, res) => {
 
 // obtener todos los usuarios
 
-
 const getUsers = async (req, res) => {
   const users = await userModel.find();  
   res.status(200).json(users);
 };  
+
+// ruta para obtener informacion del usuario. 
+const getRecovery = async (req, res) => {
+  const email = req.params.email;
+  console.log(email)
+  const users = await userModel.findOne({email});  
+  if(!users){
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
+  res.status(200).json(users);
+};
 
 
 // obtener un solo usuario por id 
@@ -80,4 +90,4 @@ const userDelete = async (req, res) => {
 };
 
 
-module.exports = { getUsers, getUser, userPatch, userDelete, createUser };
+module.exports = { getUsers, getUser, userPatch, userDelete, createUser, getRecovery };
