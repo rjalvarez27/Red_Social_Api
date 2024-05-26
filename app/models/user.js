@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         require: [true, 'El username es necesario'],
-        minLength: 4
+        minLength: 4,
+        unique: true
     },
     email: {
         type:String,
@@ -18,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         require: [true, 'El correo es necesario'],
         trim: true 
     },
-    role: {
+    rol: {
         type: String,
         required: true,
         default: 'user',
@@ -32,10 +33,7 @@ const UserSchema = new mongoose.Schema({
     premium : {
         type: Boolean,
         default: false
-    },   
-    image : {
-        type: String
-    } 
+    }
 },{
     timestamps: true,
     versionKey: false
@@ -52,4 +50,6 @@ UserSchema.statics.comparePassword = async (password, hashPassword) =>{
     return await bcrypt.compare(password, hashPassword)
 }
 
-module.exports = mongoose.model('User', UserSchema)
+
+
+module.exports = mongoose.model('user', UserSchema)
