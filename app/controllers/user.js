@@ -1,5 +1,5 @@
 const userModel = require("../models/user"); 
-
+const jwt = require("jsonwebtoken");
 //Crear un nuevo usuario
 
 const createUser = async (req, res) => {
@@ -32,9 +32,9 @@ const getRecovery = async (req, res) => {
   if(!users){
     return res.status(404).json({ message: "Usuario no encontrado" });
   }
-  res.status(200).json(users);
+  const token = jwt.sign({id:users._id},process.env.SECRET_KEY)
+  res.header('authorization',token).json({token:token})
 };
-
 
 // obtener un solo usuario por id 
 
