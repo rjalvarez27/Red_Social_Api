@@ -16,7 +16,6 @@ const createfollowers = async (req, res) => {
   }
 };
 
-
 // obtener seguidores por id de usuario
 
 const getfollowers = async (req, res) => {
