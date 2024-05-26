@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
     author: {
         type: String,
-        required: true
+        //required: true
     },
     content: {
         type: String,
@@ -12,7 +12,7 @@ const commentSchema = new mongoose.Schema({
     },
     image: {
         type: Array
-    } /* PENSAR EN COMO SE VAN A IDENTIFICAR LOS COMENTARIOS */
+    } 
 },{
     timestamps: true,
     versionKey: false

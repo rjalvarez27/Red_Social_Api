@@ -18,21 +18,21 @@ const upload = multer({ storage: storage });
 router.post('/', upload.array('image', 4), async (req, res) =>{
    
   try {
-    images = req.files.map(file => ({
+    /*images = req.files.map(file => ({
       name: file.originalname,
       data: file.buffer,
       contentType: file.mimetype
-    }));
+    }));*/
 
     const newComment = await commentModel.create({
       author: req.body.author,
       content: req.body.content,
-      image: images
+      /*image: images*/
       
     });
 
     await newComment.save();
-    console.log(images)
+
     res.send('File enviado' + newComment);
   }catch (err) {
     console.error(err);
