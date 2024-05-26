@@ -6,25 +6,6 @@ const getPublish = async (req, res) => {
     res.status(200).json(publish);
 }
 
-// AGREGAR COMENTARIO
-/*const newPublish = async (req, res) =>{
-    try{
-        const {author, content, image} = req.body;
-
-        const publish = await publishModel.create({
-            author,
-            content,
-            image 
-        });
-        res.status(201).json(publish);
-    }catch(error){
-        res.status(500).json({message: error.message})
-        
-    }
-}*/
-
-// AGREGAR FUNCION A PREMIUM
-// EDITAR COMENTARIO
 
 const updatePublish = async (req, res) => {
     try{
