@@ -1,13 +1,11 @@
 require ('dotenv').config();
-const {dbConnect} = require('./config/mongo.js'); 
+const {dbConection} = require('./config/database.js'); 
 const express = require('express');
-const multer = require('multer');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');
 
-const {dbConection} = require('./config/database.js') 
-dbConnection();
+dbConection();
 
 const port = process.env.PORT || 3000;
 app.use(cors());
