@@ -6,13 +6,14 @@ const user = require("../models/user");
 const postRecovery = async (req, res) => {
     const email = req.params.email;
     const users = await userModel.findOne({ email });
+    console.timeLog(users)
     if (!users) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
-    const code = jwt.sign({ id: users._id }, process.env.SECRET_KEY, { expiresIn: '10m' })
+    const code = jwt.sign({ id: users._id }, process.env.SECRET_KEY, { expiresIn: '8h' })
     try {
         await transporter.sendMail({
-            from: '"Mounst" <Mounst@gmail.com>',
+            from: '"Mounts" <Mounts@gmail.com>',
             to: `${users.email}`,
             subject: "Link de recuperacion de la cuenta ✔",
             text: `Hola ${users.name}, ingrese al siguiente link para recuperar su cuenta: http://localhost:5173/recoverPassword/${code}`,
@@ -30,10 +31,10 @@ const getRecovery = async (req, res) => {
         if (!decoded) {
             return res.status(404).json({ message: "token invalido" } );
         } else {
-            return res.status(200).json({ message: true });
+            return res.status(200).json({ message: decoded.id });
         }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        return res.status(404).json({ message: false });
     }
 }
 
