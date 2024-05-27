@@ -11,8 +11,6 @@ router.get('/', verifyToken, getUsers)
 
 router.get('/:id', getUser) 
 
-router.get('/recovery/:email', getRecovery)
-
 router.post('/', validateR , createUser)
 
 router.patch('/:id', userPatch)

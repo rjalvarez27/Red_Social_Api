@@ -1,5 +1,6 @@
 const userModel = require("../models/user"); 
 const jwt = require("jsonwebtoken");
+
 //Crear un nuevo usuario
 
 const createUser = async (req, res) => {
@@ -20,21 +21,13 @@ const createUser = async (req, res) => {
 // obtener todos los usuarios
 
 const getUsers = async (req, res) => {
+  try{
   const users = await userModel.find();  
   res.status(200).json(users);
-};  
-
-// ruta para obtener informacion del usuario. 
-const getRecovery = async (req, res) => {
-  const email = req.params.email;
-  console.log(email)
-  const users = await userModel.findOne({email});  
-  if(!users){
-    return res.status(404).json({ message: "Usuario no encontrado" });
+  }catch(error){
+    res.status(404).json({ message: "Error al obtener los usuarios" });
   }
-  const token = jwt.sign({id:users._id},process.env.SECRET_KEY)
-  res.header('authorization',token).json({token:token})
-};
+};  
 
 // obtener un solo usuario por id 
 
@@ -51,12 +44,12 @@ const getUser = async (req, res) => {
   }  
 };  
 
-
 // Ruta para actualizar un usuario
 
 const userPatch = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     const { name, username, email, rol, password, premium } = req.body;
     const user = await userModel.findByIdAndUpdate(id, {
       name,
@@ -70,6 +63,7 @@ const userPatch = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
     res.status(200).json({ message: "Usuario actualizado exitosamente" });
+    console.log("cambiado con exito")
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -89,5 +83,4 @@ const userDelete = async (req, res) => {
   }
 };
 
-
-module.exports = { getUsers, getUser, userPatch, userDelete, createUser, getRecovery };
+module.exports = { getUsers, getUser, userPatch, userDelete, createUser };
