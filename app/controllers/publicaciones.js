@@ -6,25 +6,11 @@ const getPublish = async (req, res) => {
     res.status(200).json(publish);
 }
 
-// AGREGAR COMENTARIO
-/*const newPublish = async (req, res) =>{
-    try{
-        const {author, content, image} = req.body;
-
-        const publish = await publishModel.create({
-            author,
-            content,
-            image 
-        });
-        res.status(201).json(publish);
-    }catch(error){
-        res.status(500).json({message: error.message})
-        
-    }
-}*/
-
+<<<<<<< HEAD
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
+=======
+>>>>>>> 0d7c43a04711bafeff1346a9c94fdab5ca19b565
 
 const updatePublish = async (req, res) => {
     try{
@@ -35,7 +21,7 @@ const updatePublish = async (req, res) => {
         if(!updatePublish){
             return res.status(404).json({error: error.message});
         }
-        res.status(200).json({message: 'Publicacion actualizada', updatePublish});
+        res.status(200).json({message: 'Publicación actualizada', updatePublish});
 
     }catch(error){
         res.status(404).json({message: error.message});

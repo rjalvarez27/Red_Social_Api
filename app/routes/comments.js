@@ -7,7 +7,6 @@ const commentModel = require('../models/comments');
 const { getComment, updateComment, deleteComment } = require('../controllers/comments');
 
 router.get('/', getComment);
-//router.post('/', newComment);
 router.put('/:id', updateComment);
 router.delete('/:id', deleteComment);
 
@@ -16,18 +15,19 @@ const upload = multer({ storage: storage });
 
 
 router.post('/', upload.array('image', 4), async (req, res) =>{
-   
+  
+  console.log(req.files)
+
   try {
-    /*images = req.files.map(file => ({
+    images = req.files.map(file => ({
       name: file.originalname,
       data: file.buffer,
       contentType: file.mimetype
-    }));*/
+    }));
 
     const newComment = await commentModel.create({
-      author: req.body.author,
       content: req.body.content,
-      /*image: images*/
+      image: images
       
     });
 
