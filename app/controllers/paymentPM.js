@@ -5,4 +5,4 @@ const getPayment = async (req, res) => {
     res.status(200).json(payment);
 }
 
-module.exports = {getPayment}
+module.exports = { getPayment }
