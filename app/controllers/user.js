@@ -51,7 +51,7 @@ const userPatch = async (req, res) => {
     const { id } = req.params;
     console.log(id)
     const { name, username, email, rol, password, premium } = req.body;
-    const user = await userModel.update(id, {
+    const user = await userModel.findByIdAndUpdate(id, {
       name,
       username,
       email,
