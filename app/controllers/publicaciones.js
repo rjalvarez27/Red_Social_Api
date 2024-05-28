@@ -6,11 +6,8 @@ const getPublish = async (req, res) => {
     res.status(200).json(publish);
 }
 
-<<<<<<< HEAD
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
-=======
->>>>>>> 0d7c43a04711bafeff1346a9c94fdab5ca19b565
 
 const updatePublish = async (req, res) => {
     try{
