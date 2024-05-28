@@ -49,8 +49,9 @@ const getUser = async (req, res) => {
 const userPatch = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     const { name, username, email, rol, password, premium } = req.body;
-    const user = await userModel.findByIdAndUpdate(id, {
+    const user = await userModel.update(id, {
       name,
       username,
       email,
@@ -58,11 +59,13 @@ const userPatch = async (req, res) => {
       password: await userModel.encryptPassword(password),
       premium
     });
+    console.log(user)
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
     res.status(200).json({ message: "Usuario actualizado exitosamente" });
   } catch (error) {
+    console.log("que paso")
     res.status(400).json({ message: error.message });
   }
 };
