@@ -1,7 +1,16 @@
 const mongoose = require('mongoose');
 
 const paymentModel = new mongoose.Schema({
-    username: {
+    name: {
+        type: String,
+        required: true
+    },
+    ci : {
+        type: String,
+        required: true,
+        unique: true
+    },
+    bank: {
         type: String,
         required: true
     },
@@ -9,16 +18,13 @@ const paymentModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    references: {
+    type: {
         type: String,
         required: true
-    },
-    comprobante: {
-        type: Array
-    } // USAR STRIPE/ banco crystaldisk
+    } 
 },{
     timestamps: true,
     versionKey: false
 })
 
-module.exports = mongoose.model('pagos', paymentModel)
+module.exports = mongoose.model('pay', paymentModel)

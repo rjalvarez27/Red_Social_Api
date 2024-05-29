@@ -48,27 +48,39 @@ const getUser = async (req, res) => {
 
 const userPatch = async (req, res) => {
   try {
-    const { id } = req.params;
-    console.log(id)
-    const { name, username, email, rol, password, premium } = req.body;
-    const user = await userModel.findByIdAndUpdate(id, {
-      name,
-      username,
-      email,
-      rol,
-      password: await userModel.encryptPassword(password),
-      premium
-    });
-    console.log(user)
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    res.status(200).json({ message: "Usuario actualizado exitosamente" });
-  } catch (error) {
-    console.log("que paso")
+    const id = req.params.id;  
+    const update = req.body;
+    const response = await userModel.findByIdAndUpdate(id, update);
+    if (!response) {
+      return res.status(404).json({ message: "Usuario no actualizado" });  
+    }  
+    res.status(200).json({ message: "Usuario actualizado" });
+  }
+    catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Ruta para actualizar password de usuarios por id
+
+const userPatchPassword = async (req, res) => {
+  const id = req.params.id;
+  const {password} = req.body;
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    const newPassword = await userModel.encryptPassword(password);
+    user.password = newPassword;
+    await user.save();
+    res.status(200).json({ message: "Contraseña actualizada" });
+  } catch (error) {
+    res.status(500).json({ message: "Error al Cambiar la contraseña" });
+  }
+};
+
+
 // Ruta para borrar un usuario por id
 const userDelete = async (req, res) => {
   try {
@@ -84,4 +96,4 @@ const userDelete = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, getUser, userPatch, userDelete, createUser };
+module.exports = { getUsers, getUser, userPatch, userDelete, createUser, userPatchPassword };
