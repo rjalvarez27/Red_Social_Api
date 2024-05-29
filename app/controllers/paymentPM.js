@@ -2,12 +2,13 @@ const paymentModel = require('../models/paymentPM');
 
 const createPayment = async (req, res) => {
     try {
-      const {name, ci, bank, email, type } = req.body;
+      const {name, ci, bank, reference, email, type } = req.body;
       console.log(name, ci, bank, type)
       const pay = await paymentModel.create({
         name,
         ci,
         bank,
+        reference,
         email,
         type
       });
