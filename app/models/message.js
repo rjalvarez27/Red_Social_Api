@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const MessageSchema = new mongoose.Schema({
     message: {
         type: String,
-        require: [true, 'El mensaje es necesario'],
+        require: true,
     },
     from: {
         type: String

@@ -21,6 +21,7 @@ app.listen(port, ()=>{
 const {Server} = require('socket.io');
 const bodyParser = require('body-parser');
 const http = require('http');
+const router = require('./app/routes/message');
 
 const server = http.createServer(app);
 
