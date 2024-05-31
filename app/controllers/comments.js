@@ -6,23 +6,6 @@ const getComment = async (req, res) => {
     res.status(200).json(comment);
 }
 
-// AGREGAR COMENTARIO
-/*const newComment = async (req, res) =>{
-    try{
-        const {author, content, image} = req.body;
-
-        const comment = await commentModel.create({
-            author,
-            content,
-            image 
-        });
-        res.status(201).json(comment);
-    }catch(error){
-        res.status(500).json({message: error.message})
-        
-    }
-}*/
-
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
 

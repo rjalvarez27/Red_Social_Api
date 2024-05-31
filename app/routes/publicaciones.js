@@ -14,7 +14,6 @@ router.delete('/:id', deletePublish);
 
 router.post('/', upload.fields([{ name: 'image', maxCount: 1 }]), async (req, res) => {
   try {
-     console.log("entro a la ruta")
       const image = req.files.image;
       console.log(image)
       if(image && image.length > 0){
@@ -32,5 +31,6 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }]), async (req, re
       res.status(400).json({ message: "Debes enviar una imagen" });
   }
 });
+
 
 module.exports = router

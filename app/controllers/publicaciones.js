@@ -6,6 +6,7 @@ const getPublish = async (req, res) => {
     res.status(200).json(publish);
 }
 
+
 // obtener avatar por id de usuario 
 
 const getPublishID = async (req, res) => {
@@ -21,6 +22,7 @@ const getPublishID = async (req, res) => {
       res.status(500).json({ message: "Error al obtener la imagen" });  
     }  
   };  
+
 
 const deletePublish = async (req, res) => {
     try{
