@@ -1,13 +1,10 @@
 // Socket io
 const express = require("express");
-const socketIo = require("socket.io");
-const io = socketIo(server);
-const http = require('http');
+const { Server : socketIo } = require("socket.io");
+const http = require("http");
+
 const messageRoutes = require("./routes/messages");
-
 const {dbConection} = require('./config/database.js');
-
-
 const app = express();
 const server = http.createServer(app);
 
