@@ -4,12 +4,11 @@ const modelLikes = require("../models/likes");
 
 const createLikes = async (req, res) => {
   try {
-    const {id_publication, id_user, like, notidications} = req.body;
+    const {id_publication, id_user, like} = req.body;
     const value = await modelLikes.create({
        id_publication,
        id_user,
-       like,
-       notidications
+       like
     });
     res.status(200).json({ message: "Like creado", value });
   } catch (error) {

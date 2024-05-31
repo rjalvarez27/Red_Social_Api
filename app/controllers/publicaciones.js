@@ -6,24 +6,21 @@ const getPublish = async (req, res) => {
     res.status(200).json(publish);
 }
 
+// obtener avatar por id de usuario 
 
-const updatePublish = async (req, res) => {
-    try{
-        const { id } = req.params;
-        const { content, image } = req.body;
-        const updatePublish = await publishModel.findByIdAndUpdate(id, {content, image});
-
-        if(!updatePublish){
-            return res.status(404).json({error: error.message});
-        }
-        res.status(200).json({message: 'Publicacion actualizada', updatePublish});
-
-    }catch(error){
-        res.status(404).json({message: error.message});
-    }
-} //ADAPTAR A NUEVO SISTEMA
-
-// ELIMINAR COMENTARIO
+const getPublishID = async (req, res) => {
+    try {
+      const id = req.params.id;  
+      console.log(id)
+      const value = await  publishModel.findById(id);
+      if (!value) {
+        return res.status(404).json({ message: "imagen de usuario no encontrado" });  
+      }  
+      res.json(value.image);
+    } catch (error) {
+      res.status(500).json({ message: "Error al obtener la imagen" });  
+    }  
+  };  
 
 const deletePublish = async (req, res) => {
     try{
@@ -33,11 +30,11 @@ const deletePublish = async (req, res) => {
         if(!deletePublish){
             return res.status(404).json({error: error.message});
         }
-        res.status(200).json({message: 'Publicaion eliminada'});
+        res.status(200).json({message: 'Publicacion eliminada'});
 
     }catch(error){
         res.status(404).json({message: error.message});
     }
 }
 
-module.exports = { getPublish, updatePublish, deletePublish }
+module.exports = { getPublish, getPublishID, deletePublish }

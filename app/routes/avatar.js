@@ -3,32 +3,34 @@ const avatarModel = require('../models/avatar');
 const router = express.Router();
 const { getAvatar,  avatarDelete} = require('../controllers/avatar');
 const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({storage: multer.memoryStorage()})
+const { uploadFile } = require('../utils/uploadFile.js');
 
 //localhost:3000/api/avatar
 
 router.get('/:id', getAvatar)
 router.delete('/:id', avatarDelete)
-router.post('/', upload.array('avatar', 1), async (req, res) => {
+router.post('/', upload.fields([{ name: 'avatar', maxCount: 1 }]), async (req, res) => {
     try {
-        images = req.files.map(file => ({
-            name: file.originalname,
-            data: file.buffer,
-            contentType: file.mimetype
-          }));
-        const newPublish = await avatarModel .create({
-            id_user: req.body.id_user,
-            avatar: images    
-          });
-        await newPublish.save();
-        console.log(newPublish)
-        res.send('File enviado' + newPublish);
+        const image = req.files.avatar;
+        console.log(image)
+        if(image && image.length > 0){
+           const {downloadURL} = await uploadFile(image[0]);
+           console.log(downloadURL)
 
+           const newPublish = await avatarModel.create({
+            id_user: req.body.id_user,
+            avatar: downloadURL
+          })
+          await newPublish.save();
+          console.log(newPublish)
+          return res.status(200).json({newPublish})
+        }
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: "Debes enviar una imagen" });
     }
   });
+
 
 
 

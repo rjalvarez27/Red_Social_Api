@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    author: {
+    id_user: {
         type: String,
         required: true
-    },
-    content: {
-        type: String,
-        required: true
-        // max-lenght:
     },
     image: {
-        type: String
+        type: String,
+        required: true
     }
 },{
     timestamps: true,
