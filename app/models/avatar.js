@@ -6,7 +6,7 @@ const avatarSchema = new mongoose.Schema({
        require: [true, 'id de usuario es necesario'],
    },
     avatar: {
-        type: Array,
+        type: String,
         require: [true, 'Ingrese imagen de perfil'],
     }
 },{

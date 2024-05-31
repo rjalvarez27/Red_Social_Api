@@ -11,10 +11,6 @@ const likeSchema = new mongoose.Schema({
     like: {
         type: Boolean,
         default: true,
-    },
-    notifications: {
-        type: Boolean,
-        default: true,     
     }
 },{
     timestamps: true,

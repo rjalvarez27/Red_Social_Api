@@ -1,15 +1,16 @@
 const avatarModel = require("../models/avatar");
-   
+const fs = require('fs');
+
 // obtener avatar por id de usuario 
   
   const getAvatar = async (req, res) => {
     try {
       const id_user = req.params.id;  
-      const value = await   avatarModel.findOne({id_user});
+      const value = await  avatarModel.findOne({id_user});
       if (!value) {
-        return res.status(404).json({ message: "Avatar no encontrado" });  
+        return res.status(404).json({ message: "imagen de usuario no encontrado" });  
       }  
-      res.json(value);
+      res.json(value.avatar);
     } catch (error) {
       res.status(500).json({ message: "Error al obtener el avatar" });  
     }  
