@@ -21,6 +21,7 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }]), async (req, re
          console.log(downloadURL)
          const newPublish = await publishModel.create({
           id_user: req.body.id_user,
+          contenido: req.body.contenido,
           image: downloadURL
         })
         await newPublish.save();
