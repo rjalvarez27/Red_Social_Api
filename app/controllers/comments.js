@@ -6,25 +6,6 @@ const getComment = async (req, res) => {
     res.status(200).json(comment);
 }
 
-// AGREGAR FUNCION A PREMIUM
-// EDITAR COMENTARIO
-
-const updateComment = async (req, res) => {
-    try{
-        const { id } = req.params;
-        const { content, image } = req.body;
-        const updateComment = await commentModel.findByIdAndUpdate(id, {content, image});
-
-        if(!updateComment){
-            return res.status(404).json({error: error.message});
-        }
-        res.status(200).json({message: 'Comentario actualizado', updateComment});
-
-    }catch(error){
-        res.status(404).json({message: error.message});
-    }
-} //ADAPTAR A NUEVO SISTEMA
-
 // ELIMINAR COMENTARIO
 
 const deleteComment = async (req, res) => {
