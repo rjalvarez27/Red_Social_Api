@@ -6,11 +6,10 @@ const upload = multer({storage: multer.memoryStorage()})
 const { uploadFile } = require('../utils/uploadFile.js');
 
 const commentModel = require('../models/comments');
-const { getComment, getCommentID, updateComment, deleteComment } = require('../controllers/comments');
+const { getComment , getCommentID, deleteComment } = require('../controllers/comments');
 
 router.get('/', getComment);
 router.get('/:id', getCommentID);
-router.put('/:id', updateComment);
 router.delete('/:id', deleteComment);
 
 router.post('/', upload.fields([{ name: 'image', maxCount: 1 }]), async (req, res) => {
