@@ -11,9 +11,9 @@ const getPublish = async (req, res) => {
 
 const getPublishID = async (req, res) => {
     try {
-      const id = req.params.id;  
-      console.log(id)
-      const value = await  publishModel.findById(id);
+      const id_user = req.params.id;  
+      console.log(id_user)
+      const value = await  publishModel.findOne({id_user} );
       if (!value) {
         return res.status(404).json({ message: "imagen de usuario no encontrado" });  
       }  
