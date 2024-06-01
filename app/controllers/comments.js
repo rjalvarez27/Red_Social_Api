@@ -6,6 +6,20 @@ const getComment = async (req, res) => {
     res.status(200).json(comment);
 }
 
+const getCommentID = async (req, res) => {
+    try {
+      const id_user = req.params.id;  
+      console.log(id_user)
+      const value = await  commentModel.findOne({id_user} );
+      if (!value) {
+        return res.status(404).json({ message: "imagen de usuario no encontrado" });  
+      }  
+      res.json(value.image);
+    } catch (error) {
+      res.status(500).json({ message: "Error al obtener la imagen" });  
+    }  
+  };  
+
 // AGREGAR FUNCION A PREMIUM
 // EDITAR COMENTARIO
 
@@ -42,4 +56,4 @@ const deleteComment = async (req, res) => {
     }
 }
 
-module.exports = { getComment , updateComment , deleteComment}
+module.exports = { getComment , getCommentID, updateComment , deleteComment}

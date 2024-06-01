@@ -4,9 +4,10 @@ const multer = require('multer');
 const fs = require('fs');
 
 const commentModel = require('../models/comments');
-const { getComment, updateComment, deleteComment } = require('../controllers/comments');
+const { getComment, getCommentID, updateComment, deleteComment } = require('../controllers/comments');
 
 router.get('/', getComment);
+router.get('/:id', getCommentID);
 router.put('/:id', updateComment);
 router.delete('/:id', deleteComment);
 
