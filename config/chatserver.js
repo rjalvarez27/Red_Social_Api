@@ -16,12 +16,12 @@ app.use(
     })
   );
 
-/*const io = new Server(httpServer, {
+const io = new Server(httpServer, {
     cors: {
       origin: 'http://localhost:3000',
       methods:['GET','POST']
     }
-  })*/
+  })
 
 app.use("/social/messages", messageRoutes);
 
