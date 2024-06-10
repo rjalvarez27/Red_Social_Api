@@ -2,7 +2,6 @@
 const express = require("express");
 const { Server : socketIo } = require("socket.io");
 const http = require("http");
-
 const messageRoutes = require("./routes/messages");
 const {dbConection} = require('./config/database.js');
 const app = express();
@@ -33,24 +32,9 @@ io.on("connection", (socket) => {
     });
 
     socket.on("message", async (message) => {
-        
         const db = await dbConection();
         await db.collection("messages").insertOne({ text: message});
         io.emit("message", message);
-    });
-
-    socket.on("typing", (isTyping) => {
-        socket.broadcast.emit("typing", isTyping);
-    });
-
-    socket.on("join_room", (data) => {
-        socket.join(data);
-        console.log(`User with ID: ${socket.id} joined room: ${data}`);
-    });
-
-    socket.on("leave_room", (data) => {
-        socket.leave(data);
-        console.log(`User with ID: ${socket.id} left room: ${data}`);
     });
 });
 
