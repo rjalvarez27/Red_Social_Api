@@ -16,10 +16,16 @@ const postRecovery = async (req, res) => {
             from: '"Mounts" <Mounts@gmail.com>',
             to: `${users.email}`,
             subject: "Link de recuperacion de la cuenta ✔",
-            text: `Hola ${users.name}, ingrese al siguiente link para recuperar su cuenta: http://localhost:5173/recoverPassword/${code}`,
+            html: `
+                <h1>Recuperación de Contraseña Mounts</h1>
+                <p>Hola ${users.name}</p>
+                <p>Has solicitado restablecer tu contraseña. Haz clic en el siguiente enlace para cambiarla:</p>
+                <p>http://localhost:5173/recoverPassword/${code}</p>
+                <p>Si no solicitaste esto, ignora este mensaje.</p>
+                <p>¡Gracias!</p>`
         });    
         res.status(200).json({ message: "Email enviado" });
-    } catch (error) {
+    } catch (error) { 
         res.status(404).json({ message: error.message });
     }
 }
