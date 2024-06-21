@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const UserSchema = new mongoose.Schema({
     name:{
         type: String,
-        minLength: 3
+        minLength: 4
     },
     username: {
         type: String,
@@ -46,7 +46,5 @@ UserSchema.statics.encryptPassword = async (password) =>{
 UserSchema.statics.comparePassword = async (password, hashPassword) =>{
     return await bcrypt.compare(password, hashPassword)
 }
-
-
 
 module.exports = mongoose.model('user', UserSchema)
