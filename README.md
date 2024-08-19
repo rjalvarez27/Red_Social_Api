@@ -9,8 +9,11 @@ Red social desarrollada con Stack MERN. Este proyecto me permitió aplicar los c
 Para desarrollar Blends utilizamos:
 
 1)React (front).
+
 2) Express (Backend): Creación de API.
+
 3) Mongodb (Base de datos).
+
 4) firebase (Almacenamiento de datos).
 
 ⚙ Funcionalidades:
