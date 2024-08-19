@@ -34,12 +34,8 @@ Para llevar a cabo el desarrollo de red social, se usaron la metodología Scrum,
 11) Editar Información: Los usuarios pueden editar su información personal como nombre, correo, contraseña, descripción, imagen de perfil y también tienen la opción de eliminar su cuenta.
 12) Administración: Hay dos tipos de usuarios: el usuario estándar y el administrador. El administrador tiene privilegios para eliminar publicaciones, editar la información de los usuarios y eliminar cuentas si es necesario.
 15) Notificaciones: Los usuarios reciben notificaciones cuando reciben solicitudes de amistad.
-
 16) Verificacion por correo: Verificacion de cambio de contrasenna por correo y cuando se realiza un pago recepcion por correo de la factura del mismo para pagos de usuarios premium. 
-
 Entre otra funcionabilidades que se le vayan agregrando. 
-
-
 
 🖼 Interfaz:
 
