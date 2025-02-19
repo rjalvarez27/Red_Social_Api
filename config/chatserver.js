@@ -6,6 +6,7 @@ const messageRoutes = require("./routes/messages");
 const {dbConection} = require('./config/database.js');
 const app = express();
 const server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 dbConection();
 app.use(
@@ -26,7 +27,7 @@ app.use("/social/messages", messageRoutes);
 
 io.on("connection", (socket) => {
     console.log(`User connected: ${socket.id}`);
-
+    
     socket.on("disconnect", () => {
         console.log(`User disconnected: ${socket.id}`);
     });
